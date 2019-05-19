@@ -31,5 +31,21 @@ namespace BookClub.Controllers
             return View(editBook);
         }
 
+        public ActionResult DeleteBook(int bookId)
+        {
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+            service.DeleteBook(bookId);
+
+            // get the list of books
+            List<Book> listofBooks = service.GEtAllBooks();
+
+            return View("Index", listofBooks);
+        }
+
+        public ActionResult AddBook()
+        {
+            return View();
+        }
     }
 }

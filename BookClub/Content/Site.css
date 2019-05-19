@@ -1,6 +1,7 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 10px;
     padding-bottom: 20px;
+    padding-left: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,8 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.btnTextColor a {
+    color: white !important;
+    text-transform: uppercase;
 }

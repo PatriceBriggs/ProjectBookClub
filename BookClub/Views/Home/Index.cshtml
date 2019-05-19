@@ -9,14 +9,37 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Book Club</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <p>
-        @Html.ActionLink("Add a Book", "Create")
+        <div class="btn btn-success btnTextColor">
+            @Html.ActionLink("Add a Book", "AddBook")
+        </div>
+        <inline class="btn btn-success btnTextColor">
+            @Html.ActionLink("View/Edit Book Sources", "GetBookSources")
+        </inline>
+
+        <inline class="btn btn-success btnTextColor">
+            @Html.ActionLink("View/Edit Book Clubs", "GetBookClubs")
+        </inline>
+
     </p>
+    <div class="text-center">
+        <h2>Book Club Reads</h2>
+    </div>
     <table class="table">
         <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date Read</th>
+            <th>Main Characters</th>
+            <th>Notes</th>
+            <th>Genre</th>
+            <th>Stars</th>
             <th></th>
         </tr>
     

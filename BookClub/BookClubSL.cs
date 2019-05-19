@@ -40,6 +40,12 @@ namespace BookClub
             return editBook;
         }
 
+        public void DeleteBook(int bookId)
+        {
+            _bookRepository.DeleteBook(bookId);
+            return;
+        }
+
 
     }
 }

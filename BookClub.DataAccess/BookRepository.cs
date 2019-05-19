@@ -1,4 +1,5 @@
 ﻿using BookClub.Core;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -29,11 +30,18 @@ namespace BookClub.Core
 
         public List<Book> GetAllBooks()
         {
-
             return _context.Database
                 .SqlQuery<Book>("_sp_GetAllBooks")
                 .ToList();
         }
 
+        public void DeleteBook(int bookId)
+        {
+            SqlParameter prmBookId = new SqlParameter("bookId", bookId);
+            _context.Database.ExecuteSqlCommand("Delete From Books Where BookId = " + bookId);
+
+            return;
+
+        }
     }
 }
