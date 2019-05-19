@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BookClub.Core.Book>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Add a Book", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+    
+    @foreach (var book in Model) {
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.DateRead</td>
+            <td>@book.MainCharacters</td>
+            <td>@book.Notes</td>
+            <td>@book.GenreDesc</td>
+            <td>@book.Stars</td>
+            
+            <td>
+                @Html.ActionLink("Edit", "EditBook", new { bookid = book.BookId })
+                @Html.ActionLink("Delete", "DeleteBook", new { bookid = book.BookId })
+            </td>
+
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
