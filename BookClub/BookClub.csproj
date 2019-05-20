@@ -216,6 +216,8 @@
     <Content Include="Views\Home\EditBook.cshtml" />
     <Content Include="Views\Home\AddBook.cshtml" />
     <Content Include="Views\Home\Genres.cshtml" />
+    <Content Include="Views\Home\GetBookSources.cshtml" />
+    <Content Include="Views\Home\BookClubs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
