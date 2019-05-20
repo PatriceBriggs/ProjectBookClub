@@ -24,7 +24,7 @@ namespace BookClub
             _bookClubRepository = new BookClubRepository(context);
         }
 
-        public List<Book> GEtAllBooks()
+        public List<Book> GetAllBooks()
         {
             List<Book> listOfBooks = new List<Book>();
             listOfBooks = _bookRepository.GetAllBooks();
@@ -32,9 +32,9 @@ namespace BookClub
             return listOfBooks;
         }
 
-        public Book EditBook(int bookId)
+        public EditBook EditBook(int bookId)
         {
-            Book editBook = new Book();
+            EditBook editBook = new EditBook();
             editBook = _bookRepository.GetOneBook(bookId);
 
             return editBook;
@@ -46,11 +46,16 @@ namespace BookClub
             return;
         }
 
+        internal void EditBook(Book editBook)
+        {
+            _bookRepository.EditBook(editBook);
+        }
+
         internal void AddBook(Book newBook)
         {
 
              _bookRepository.AddBook(newBook);
-            return;
+             return;
         }
 
         internal AddBook GetBookClubs(AddBook addBook)
@@ -66,6 +71,19 @@ namespace BookClub
 
         }
 
+        internal EditBook GetBookClubs(EditBook editBook)
+        {
+
+            List<BookClub.Core.BookClub> bookClubList = new List<BookClub.Core.BookClub>();
+            bookClubList = _bookClubRepository.GetBookClubs();
+
+            // add the genreList to the addBook model
+            editBook.BookClubList = bookClubList;
+
+            return editBook;
+
+        }
+
         internal AddBook GetGenres(AddBook addBook)
         {
             List<Genre> genreList = new List<Genre>();
@@ -75,6 +93,18 @@ namespace BookClub
             addBook.GenreList = genreList;
 
             return addBook;
+
+        }
+
+        internal EditBook GetGenres(EditBook editBook)
+        {
+            List<Genre> genreList = new List<Genre>();
+            genreList = _genreRepository.GetGenres();
+
+            // add the genreList to the addBook model
+            editBook.GenreList = genreList;
+
+            return editBook;
 
         }
     }

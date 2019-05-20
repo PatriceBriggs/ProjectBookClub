@@ -52,6 +52,7 @@
     <Compile Include="Models\BookClub.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookSources.cs" />
+    <Compile Include="Models\EditBook.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcReturnTypes\GetAllBooks.cs" />
