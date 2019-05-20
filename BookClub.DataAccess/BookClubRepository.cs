@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,5 +25,21 @@ namespace BookClub.Core
         {
             return _context.BookClubs.Find(bookClubId);
         }
+
+        public List<BookClub> AddBookClub(BookClub newBookClub)
+        {
+            SqlParameter prmBookClubName = new SqlParameter("bookClubName", newBookClub.BookClubName);
+            _context.Database.ExecuteSqlCommand("Insert Into BookClub(BookClubName) Values (" + prmBookClubName + ")");
+
+            return _context.BookClubs.ToList();
+        }
+
+        //public void DeleteBookClub(int genreId)
+        //{
+        //    SqlParameter prmGenreId = new SqlParameter("genreId", genreId);
+        //    _context.Database.ExecuteSqlCommand("Delete From Genres Where GenreId = " + prmGenreId);
+
+        //    return;
+        //}
     }
 }

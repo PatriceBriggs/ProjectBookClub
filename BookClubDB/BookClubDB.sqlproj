@@ -67,5 +67,7 @@
     <Build Include="dbo\Tables\BookClubs.sql" />
     <Build Include="dbo\Tables\BookSources.sql" />
     <Build Include="dbo\Stored Procedures\_sp_GetAllBooks.sql" />
+    <Build Include="dbo\Stored Procedures\_sp_GetOneBook.sql" />
+    <Build Include="dbo\Stored Procedures\_sp_GetBookSources.sql" />
   </ItemGroup>
 </Project>

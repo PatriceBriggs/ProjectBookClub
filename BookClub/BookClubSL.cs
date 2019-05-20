@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using BookClub.Core;
 using BookClub.Core.StoredProcReturnTypes;
-using BookClub.Core;
-
 
 namespace BookClub
 {
@@ -14,6 +12,7 @@ namespace BookClub
         private BookRepository _bookRepository;
         private BookSourceRepository _bookSourceRepository;
         private GenreRepository _genreRepository;
+        private BookClubRepository _bookClubRepository;
 
 
         public BookClubSL(string connString)
@@ -22,6 +21,7 @@ namespace BookClub
             _bookRepository = new BookRepository(context);
             _bookSourceRepository = new BookSourceRepository(context);
             _genreRepository = new GenreRepository(context);
+            _bookClubRepository = new BookClubRepository(context);
         }
 
         public List<Book> GEtAllBooks()
@@ -46,6 +46,36 @@ namespace BookClub
             return;
         }
 
+        internal void AddBook(Book newBook)
+        {
 
+             _bookRepository.AddBook(newBook);
+            return;
+        }
+
+        internal AddBook GetBookClubs(AddBook addBook)
+        {
+            
+            List<BookClub.Core.BookClub> bookClubList = new List<BookClub.Core.BookClub>();
+            bookClubList = _bookClubRepository.GetBookClubs();
+
+            // add the genreList to the addBook model
+            addBook.BookClubList = bookClubList;
+
+            return addBook;
+
+        }
+
+        internal AddBook GetGenres(AddBook addBook)
+        {
+            List<Genre> genreList = new List<Genre>();
+            genreList = _genreRepository.GetGenres();
+
+            // add the genreList to the addBook model
+            addBook.GenreList = genreList;
+
+            return addBook;
+
+        }
     }
 }

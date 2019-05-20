@@ -43,9 +43,32 @@ namespace BookClub.Controllers
             return View("Index", listofBooks);
         }
 
+        [HttpPost]
+        public ActionResult AddBook(Book newBook)
+        {
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+            service.AddBook(newBook);
+
+            // get the list of books
+            List<Book> listOfBooks = service.GEtAllBooks();
+            return View("Index", listOfBooks);
+        }
+
         public ActionResult AddBook()
         {
-            return View();
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+
+            AddBook addBook = new AddBook();
+
+            // get list of book clubs and add to model
+            addBook = service.GetBookClubs(addBook);
+
+            // get list of genres and add to model
+            addBook = service.GetGenres(addBook);
+
+            return View(addBook);
         }
     }
 }

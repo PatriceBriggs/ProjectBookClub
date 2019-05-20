@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AddBook.cs" />
     <Compile Include="Models\BookClub.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookSources.cs" />
