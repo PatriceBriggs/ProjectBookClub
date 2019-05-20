@@ -215,6 +215,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\EditBook.cshtml" />
     <Content Include="Views\Home\AddBook.cshtml" />
+    <Content Include="Views\Home\Genres.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

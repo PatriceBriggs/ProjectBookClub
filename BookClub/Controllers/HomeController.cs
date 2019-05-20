@@ -88,5 +88,32 @@ namespace BookClub.Controllers
 
             return View(addBook);
         }
+        public ActionResult GetBookSources()
+        {
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+            List<BookSource> bookSources = new List<BookSource>();
+            bookSources = service.GetBookSources();
+            return View(bookSources);
+        }
+
+
+        public ActionResult GetGenres()
+        {
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+            List<Genre> genreList = new List<Genre>();
+            genreList = service.GetGenres();
+            return View("Genres",genreList);
+        }
+
+        public ActionResult GetBookClubs()
+        {
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+            List<BookClub.Core.BookClub> listBookClubs = new List<BookClub.Core.BookClub>();
+            listBookClubs = service.GetBookClubs();
+            return View(listBookClubs);
+        }
     }
 }
