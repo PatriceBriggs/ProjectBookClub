@@ -3,7 +3,7 @@
 -- Create date: 5/11/2018
 -- Description:	GEt List of books
 -- =============================================
-CREATE PROCEDURE _sp_GetAllBooks 
+CREATE PROCEDURE [dbo].[_sp_GetAllBooks] 
 	
 AS
 BEGIN
@@ -11,8 +11,8 @@ BEGIN
 	SET NOCOUNT ON;
 
 	Select bookId
-		  ,b.BookClubId
-		  ,b.GenreId
+		  ,b.BookClubId AS [SelectedBookClubId]
+		  ,b.GenreId AS [SelectedGenreId]
 		  ,Title
 		  ,Author
 		  ,DateRead

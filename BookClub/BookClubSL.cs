@@ -46,12 +46,12 @@ namespace BookClub
             return;
         }
 
-        internal void EditBook(Book editBook)
+        internal void EditBook(EditBook editBook)
         {
             _bookRepository.EditBook(editBook);
         }
 
-        internal void AddBook(Book newBook)
+        internal void AddBook(AddBook newBook)
         {
 
              _bookRepository.AddBook(newBook);

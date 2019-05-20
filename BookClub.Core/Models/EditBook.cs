@@ -18,11 +18,11 @@ namespace BookClub.Core
         [Display(Name = "Main Characters")]
         public string MainCharacters { get; set; }
         public string Notes { get; set; }
-        public int SelectedBookClubId { get; set; }
+        public int BookClubId { get; set; }
         [Display(Name = "Book Club Name")]
         public string BookClubName { get; set; }
         public string GoodReadLink { get; set; }
-        public int SelectedGenreId { get; set; }
+        public int GenreId { get; set; }
 
         [Display(Name = "Genre")]
         public string GenreDesc { get; set; }

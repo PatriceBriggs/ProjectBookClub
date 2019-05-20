@@ -12,8 +12,8 @@ BEGIN
 	SET NOCOUNT ON;
 
 	Select bookId
-		  ,b.BookClubId
-		  ,b.GenreId
+		  ,b.BookClubId 
+		  ,b.GenreId 
 		  ,Title
 		  ,Author
 		  ,DateRead

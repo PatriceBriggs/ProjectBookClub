@@ -43,16 +43,16 @@ namespace BookClub.Core
             return;
         }
 
-        public void EditBook(Book editBook)
+        public void EditBook(EditBook editBook)
         {
             SqlParameter prmBookId = new SqlParameter("bookId", editBook.BookId);
-            SqlParameter prmGenreId = new SqlParameter("genreId", editBook.SelectedGenreId);
+            SqlParameter prmGenreId = new SqlParameter("genreId", editBook.GenreId);
             SqlParameter prmTitle = new SqlParameter("title", editBook.Title);
             SqlParameter prmAuthor = new SqlParameter("author", editBook.Author);
             SqlParameter prmDateRead = new SqlParameter("dateRead", editBook.DateRead);
             SqlParameter prmMainCharacters = new SqlParameter("mainCharacters", editBook.MainCharacters);
             SqlParameter prmNotes = new SqlParameter("notes", editBook.Notes);
-            SqlParameter prmBookClubId = new SqlParameter("bookClubId", editBook.SelectedBookClubId);
+            SqlParameter prmBookClubId = new SqlParameter("bookClubId", editBook.BookClubId);
             SqlParameter prmGoodReadLink = new SqlParameter("goodReadLink", editBook.GoodReadLink);
             SqlParameter prmStars = new SqlParameter("stars", editBook.Stars);
             var result =  _context.Database
@@ -63,17 +63,17 @@ namespace BookClub.Core
    
         }
 
-        public void AddBook(Book editBook)
+        public void AddBook(AddBook newBook)
         {
-            SqlParameter prmGenreId = new SqlParameter("genreId", editBook.SelectedGenreId);
-            SqlParameter prmTitle = new SqlParameter("title", editBook.Title);
-            SqlParameter prmAuthor = new SqlParameter("author", editBook.Author);
-            SqlParameter prmDateRead = new SqlParameter("dateRead", editBook.DateRead);
-            SqlParameter prmMainCharacters = new SqlParameter("mainCharacters", editBook.MainCharacters);
-            SqlParameter prmNotes = new SqlParameter("notes", editBook.Notes);
-            SqlParameter prmBookClubId = new SqlParameter("bookClubId", editBook.SelectedBookClubId);
-            SqlParameter prmGoodReadLink = new SqlParameter("goodReadLink", editBook.GoodReadLink);
-            SqlParameter prmStars = new SqlParameter("stars", editBook.Stars);
+            SqlParameter prmGenreId = new SqlParameter("genreId", newBook.GenreId);
+            SqlParameter prmTitle = new SqlParameter("title", newBook.Title);
+            SqlParameter prmAuthor = new SqlParameter("author", newBook.Author);
+            SqlParameter prmDateRead = new SqlParameter("dateRead", newBook.DateRead);
+            SqlParameter prmMainCharacters = new SqlParameter("mainCharacters", newBook.MainCharacters);
+            SqlParameter prmNotes = new SqlParameter("notes", newBook.Notes);
+            SqlParameter prmBookClubId = new SqlParameter("bookClubId", newBook.BookClubId);
+            SqlParameter prmGoodReadLink = new SqlParameter("goodReadLink", newBook.GoodReadLink);
+            SqlParameter prmStars = new SqlParameter("stars", newBook.Stars);
             var result =  _context.Database
                 .SqlQuery<object>("_sp_AddBook @genreId, @title, @author, @dateRead, @mainCharacters, @notes, @bookClubId, @goodReadLink, @stars",
                                               prmGenreId, prmTitle, prmAuthor, prmDateRead, prmMainCharacters, prmNotes, prmBookClubId, prmGoodReadLink, prmStars)

@@ -38,7 +38,7 @@ namespace BookClub.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditBook(Book editBook)
+        public ActionResult EditBook(EditBook editBook)
         {
             string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
             BookClubSL service = new BookClubSL(connString);
@@ -62,7 +62,7 @@ namespace BookClub.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddBook(Book newBook)
+        public ActionResult AddBook(AddBook newBook)
         {
             string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
             BookClubSL service = new BookClubSL(connString);
