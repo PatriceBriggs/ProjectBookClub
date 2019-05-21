@@ -26,13 +26,16 @@ namespace BookClub.Core
         {
             return _context.BookSources.Find(bookSourceId);
         }
-        public List<BookSource> AddBookSource(BookSource newBookSource)
+        public void AddBookSource(BookSource newBookSource)
         {
             SqlParameter prmBookSourceName = new SqlParameter("bookSourceName", newBookSource.BookSourceName);
             SqlParameter prmBookSourceLink = new SqlParameter("bookSourceLink", newBookSource.BookSourceLink);
-            return _context.Database
-                .SqlQuery<BookSource>("_sp_AddBookSource", prmBookSourceName, prmBookSourceLink)
+            var result = _context.Database
+                .SqlQuery<object>("_sp_AddBookSource @bookSourceName, @bookSourceLink",
+                                  prmBookSourceName, prmBookSourceLink)
                 .ToList();
+            return;
+            
         }
 
         public List<BookSource> EditBookSource(int bookSourceId, BookSource editBookSource)

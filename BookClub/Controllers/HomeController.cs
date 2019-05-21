@@ -42,11 +42,25 @@ namespace BookClub.Controllers
         {
             string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
             BookClubSL service = new BookClubSL(connString);
-            service.EditBook(editBook);
+            if (ModelState.IsValid)
+            {
 
-            // get the list of books
-            List<Book> listOfBooks = service.GetAllBooks();
-            return View("Index", listOfBooks);
+                service.EditBook(editBook);
+
+                // get the list of books
+                List<Book> listOfBooks = service.GetAllBooks();
+                return View("Index", listOfBooks);
+            }
+            else
+            {
+                // get list of book clubs and add to model
+                editBook = service.GetBookClubs(editBook);
+
+                // get list of genres and add to model
+                editBook = service.GetGenres(editBook);
+
+                return View(editBook);
+            }
         }
 
         public ActionResult DeleteBook(int bookId)
@@ -66,11 +80,24 @@ namespace BookClub.Controllers
         {
             string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
             BookClubSL service = new BookClubSL(connString);
-            service.AddBook(newBook);
+            if (ModelState.IsValid)
+            { 
+                service.AddBook(newBook);
 
-            // get the list of books
-            List<Book> listOfBooks = service.GetAllBooks();
-            return View("Index", listOfBooks);
+                // get the list of books
+                List<Book> listOfBooks = service.GetAllBooks();
+                return View("Index", listOfBooks);
+            }
+            else
+            {
+                // get list of book clubs and add to model
+                newBook = service.GetBookClubs(newBook);
+
+                // get list of genres and add to model
+                newBook = service.GetGenres(newBook);
+
+                return View(newBook);
+            }
         }
 
         public ActionResult AddBook()
@@ -94,9 +121,24 @@ namespace BookClub.Controllers
             BookClubSL service = new BookClubSL(connString);
             List<BookSource> bookSources = new List<BookSource>();
             bookSources = service.GetBookSources();
-            return View(bookSources);
+            return View("BookSources", bookSources);
         }
 
+
+        [HttpPost]
+        public ActionResult AddBookSource(string newBookSourceName, string newBookSourceLink)
+        {
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+
+            BookSource newBookSource = new BookSource();
+            newBookSource.BookSourceName = newBookSourceName;
+            newBookSource.BookSourceLink = newBookSourceLink;
+            service.AddBookSource(newBookSource);
+
+            return RedirectToAction("GetBookSources", "Home");
+
+        }
 
         public ActionResult GetGenres()
         {
@@ -113,7 +155,16 @@ namespace BookClub.Controllers
             BookClubSL service = new BookClubSL(connString);
             List<BookClub.Core.BookClub> listBookClubs = new List<BookClub.Core.BookClub>();
             listBookClubs = service.GetBookClubs();
-            return View(listBookClubs);
+            return View("BookClubs", listBookClubs);
+        }
+        public ActionResult AddBookClub(string newBookClubName)
+        {
+            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            BookClubSL service = new BookClubSL(connString);
+
+            service.AddBookClub(newBookClubName);
+            return RedirectToAction("GetBookClubs", "Home");
+
         }
     }
 }

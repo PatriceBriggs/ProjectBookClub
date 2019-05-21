@@ -68,12 +68,11 @@ namespace BookClub
             addBook.BookClubList = bookClubList;
 
             return addBook;
-
         }
+
         internal List<BookClub.Core.BookClub> GetBookClubs()
         {
             return _bookClubRepository.GetBookClubs();
-
         }
 
         internal EditBook GetBookClubs(EditBook editBook)
@@ -86,7 +85,6 @@ namespace BookClub
             editBook.BookClubList = bookClubList;
 
             return editBook;
-
         }
 
         internal AddBook GetGenres(AddBook addBook)
@@ -98,7 +96,6 @@ namespace BookClub
             addBook.GenreList = genreList;
 
             return addBook;
-
         }
 
         internal EditBook GetGenres(EditBook editBook)
@@ -110,7 +107,6 @@ namespace BookClub
             editBook.GenreList = genreList;
 
             return editBook;
-
         }
 
         internal List<Genre> GetGenres()
@@ -121,6 +117,18 @@ namespace BookClub
         internal List<BookSource> GetBookSources()
         {
             return _bookSourceRepository.GetBookSources();
+        }
+
+        internal void AddBookClub(string newBookClubName)
+        {
+            _bookClubRepository.AddBookClub(newBookClubName);
+            return;
+        }
+
+        internal void AddBookSource(BookSource newBookSource)
+        {
+            _bookSourceRepository.AddBookSource(newBookSource);
+            return;
         }
     }
 }

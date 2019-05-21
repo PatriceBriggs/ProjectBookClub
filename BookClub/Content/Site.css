@@ -2,6 +2,7 @@
     padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 20px;
+    background-image: url('../Images/white-linen.png');
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,3 +28,56 @@ textarea {
     color: white;
     text-transform: uppercase;
 }
+.btnTextColor {
+    text-transform: uppercase;
+}
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 99999;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+    .modalDialog:target {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modalDialog > div {
+        width: 500px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #999);
+        background: -webkit-linear-gradient(#fff, #999);
+        background: -o-linear-gradient(#fff, #999);
+    }
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr, td {
+    text-align: left;
+}
+.formWider {
+    width: 375px;
+    padding-right: 0px;
+}
+table .form-control {
+    width: 300px;
+    margin-right: 0px !important;
+}
+/*https://www.granneman.com/webdev/coding/css/centertables  */

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<BookClub.Core.BookSource>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Book Sources</title>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <a href="#bookSourceModal" class="btn btn-success btnTextColor">ADD Book Source</a>
+    <div id="bookSourceModal" class="modalDialog">
+        <div >
+            <table class="center">
+                <tr>
+                    <td style="text-align: center;">
+                        @*<a href="#close" class="btn btn-success btnTextColor" onclick="@("location.href='"
+        + Url.Action("AddBookSource", "Home", new { newBookSourceName = "Great Books" })
+        + "'")">SAVE</a>*@
+                        <a href="#close" class="btn btn-success btnTextColor" onclick="saveNewBookSource()">SAVE</a>
+                        <br />
+                    </td>
+                </tr>
+                <tr >
+                    <td>
+                        <div class="form-group formWider">
+                             @Html.Editor("NewBookSourceName", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <div class="form-group formWider">
+                             @Html.Editor("NewBookSourceLink", new { htmlAttributes = new { @class = "form-control" } })
+                         </div>
+
+                    </td>                   
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        <div class="col-md-10">
+            @Html.Editor("NewBookSourceName", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-10">
+            @Html.Editor("NewBookSourceLink", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>*@
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookSourceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookSourceLink)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookSourceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookSourceLink)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookSourceId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookSourceId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookSourceId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+    });
+    function saveNewBookSource() {
+        var newBookSourceName = $("#NewBookSourceName").val();
+        var newBookSourceLink = $("#NewBookSourceLink").val();
+
+        $.ajax({
+            url: '/Home/AddBookSource/',
+            data: {
+                newBookSourceName: newBookSourceName,
+                newBookSourceLink: newBookSourceLink
+            },
+            type: "POST",
+            success: function () {
+                window.location.reload()
+            },
+        });
+    }
+</script>

@@ -151,6 +151,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\white-linen.png" />
+    <Content Include="Images\xlicons257.ico" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -216,7 +218,7 @@
     <Content Include="Views\Home\EditBook.cshtml" />
     <Content Include="Views\Home\AddBook.cshtml" />
     <Content Include="Views\Home\Genres.cshtml" />
-    <Content Include="Views\Home\GetBookSources.cshtml" />
+    <Content Include="Views\Home\BookSources.cshtml" />
     <Content Include="Views\Home\BookClubs.cshtml" />
   </ItemGroup>
   <ItemGroup>

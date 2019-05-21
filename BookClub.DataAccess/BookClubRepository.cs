@@ -26,20 +26,11 @@ namespace BookClub.Core
             return _context.BookClubs.Find(bookClubId);
         }
 
-        public List<BookClub> AddBookClub(BookClub newBookClub)
+        public void AddBookClub(string newBookClubName)
         {
-            SqlParameter prmBookClubName = new SqlParameter("bookClubName", newBookClub.BookClubName);
-            _context.Database.ExecuteSqlCommand("Insert Into BookClub(BookClubName) Values (" + prmBookClubName + ")");
-
-            return _context.BookClubs.ToList();
-        }
-
-        //public void DeleteBookClub(int genreId)
-        //{
-        //    SqlParameter prmGenreId = new SqlParameter("genreId", genreId);
-        //    _context.Database.ExecuteSqlCommand("Delete From Genres Where GenreId = " + prmGenreId);
-
-        //    return;
-        //}
+            //SqlParameter prmBookClubName = new SqlParameter("bookClubName", newBookClubName);
+            _context.Database.ExecuteSqlCommand("Insert Into BookClubs(BookClubName) Values ('" + newBookClubName + "')");
+            return;
+        }  
     }
 }

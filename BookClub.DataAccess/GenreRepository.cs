@@ -18,28 +18,9 @@ namespace BookClub.Core
 
         public List<Genre> GetGenres()
         {
-            return _context.Genres.ToList();
-        }
-
-        public Genre Get(int genreId)
-        {
-            return _context.Genres.Find(genreId);
-        }
-
-        public List<Genre> AddGenre(Genre newGenre)
-        {
-            SqlParameter prmGenreDesc = new SqlParameter("genreDesc", newGenre.GenreDesc);
-            _context.Database.ExecuteSqlCommand("Insert Into Genres(GenreDesc) Values (" + prmGenreDesc + ")");
-
-            return _context.Genres.ToList();
-        }
-
-        //public void DeleteGenre(int genreId)
-        //{
-        //    SqlParameter prmGenreId = new SqlParameter("genreId", genreId);
-        //    _context.Database.ExecuteSqlCommand("Delete From Genres Where GenreId = " + prmGenreId);
-
-        //    return;
-        //}
+            return _context.Database
+                  .SqlQuery<Genre>("_sp_GetGenres")
+                  .ToList();
+        } 
     }
 }

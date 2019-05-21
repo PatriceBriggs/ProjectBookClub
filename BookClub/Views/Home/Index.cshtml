@@ -20,14 +20,11 @@
             @Html.ActionLink("Add a Book", "AddBook")
         </div>
         <inline class="btn btn-success btnTextColor">
-            @Html.ActionLink("View/Edit Book Sources", "GetBookSources")
+            @Html.ActionLink("Book Sources", "GetBookSources")
         </inline>
 
         <inline class="btn btn-success btnTextColor">
-            @Html.ActionLink("View/Edit Book Clubs", "GetBookClubs")
-        </inline>
-        <inline class="btn btn-success btnTextColor">
-            @Html.ActionLink("View/Edit Genres", "GetGenres")
+            @Html.ActionLink("Book Clubs", "GetBookClubs")
         </inline>
 
     </p>
@@ -41,7 +38,9 @@
             <th>Date Read</th>
             <th>Main Characters</th>
             <th>Notes</th>
+            <th>Book Club</th>
             <th>Genre</th>
+            <th>Book Information</th>
             <th>Stars</th>
             <th></th>
         </tr>
@@ -53,7 +52,9 @@
             <td>@book.DateRead</td>
             <td>@book.MainCharacters</td>
             <td>@book.Notes</td>
+            <td>@book.BookClubName</td>
             <td>@book.GenreDesc</td>
+            <td>@book.GoodReadLink</td>
             <td>@book.Stars</td>
             
             <td>

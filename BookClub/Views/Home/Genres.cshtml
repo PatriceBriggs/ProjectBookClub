@@ -10,13 +10,24 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Genres</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <a href="#genreModal" class="btn btn-success btnTextColor">ADD GENRE</a>
+    <div id="genreModal" class="modalDialog">
+        <div>
+            <a href="#close" class="btn btn-success btnTextColor" onclick="@("location.href='"
+               + Url.Action("AddGenre", "Home", new { newGenre = "Fiction" })
+               + "'")">SAVE</a>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Editor("NewGenre", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="table">
         <tr>
             <th>
@@ -24,20 +35,32 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreDesc)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.GenreId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.GenreId }) |
 
-            </td>
-        </tr>
-    }
-    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreDesc)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GenreId })
+
+                </td>
+            </tr>
+        }
+
     </table>
+
+    <!--Modal from https://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-css3/ -->
+    <!--$("#NewGenre".val()-->
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+    });
+    function saveGenre() {
+        var newGenre = $("#NewGenre").val();
+        
+    }
+</script>
+

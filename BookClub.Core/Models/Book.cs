@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace BookClub.Core
     {
         public int BookId { get; set; }
         public int SelectedGenreId { get; set; }
-        public string Title { get; set; }
 
+        [Required(ErrorMessage = "Please enter the title.")]
+        public string Title { get; set; }
+        [Required()]
         public string Author { get; set; }
         public DateTime? DateRead { get; set; }
         public string MainCharacters { get; set; }
