@@ -72,5 +72,6 @@
     <Build Include="dbo\Stored Procedures\_sp_EditBook.sql" />
     <Build Include="dbo\Stored Procedures\_sp_AddBookSource.sql" />
     <Build Include="dbo\Stored Procedures\_sp_AddBook.sql" />
+    <Build Include="dbo\Stored Procedures\_sp_GetGenres.sql" />
   </ItemGroup>
 </Project>
