@@ -11,11 +11,10 @@ namespace BookClub.Controllers
 {
     public class HomeController : Controller
     {
+        private static string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+        public BookClubSL service = new BookClubSL(connString);
         public ActionResult Index()
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
-
             // get the list of books
             List<Book> listofBooks = service.GetAllBooks();
 
@@ -24,10 +23,7 @@ namespace BookClub.Controllers
 
         public ActionResult EditBook(int bookId)
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
             EditBook editBook = service.EditBook(bookId);
-
             // get list of book clubs and add to model
             editBook = service.GetBookClubs(editBook);
 
@@ -40,8 +36,6 @@ namespace BookClub.Controllers
         [HttpPost]
         public ActionResult EditBook(EditBook editBook)
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
             if (ModelState.IsValid)
             {
 
@@ -65,8 +59,6 @@ namespace BookClub.Controllers
 
         public ActionResult DeleteBook(int bookId)
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
             service.DeleteBook(bookId);
 
             // get the list of books
@@ -78,8 +70,6 @@ namespace BookClub.Controllers
         [HttpPost]
         public ActionResult AddBook(AddBook newBook)
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
             if (ModelState.IsValid)
             { 
                 service.AddBook(newBook);
@@ -102,9 +92,6 @@ namespace BookClub.Controllers
 
         public ActionResult AddBook()
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
-
             AddBook addBook = new AddBook();
 
             // get list of book clubs and add to model
@@ -117,8 +104,6 @@ namespace BookClub.Controllers
         }
         public ActionResult GetBookSources()
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
             List<BookSource> bookSources = new List<BookSource>();
             bookSources = service.GetBookSources();
             return View("BookSources", bookSources);
@@ -128,9 +113,6 @@ namespace BookClub.Controllers
         [HttpPost]
         public ActionResult AddBookSource(string newBookSourceName, string newBookSourceLink)
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
-
             BookSource newBookSource = new BookSource();
             newBookSource.BookSourceName = newBookSourceName;
             newBookSource.BookSourceLink = newBookSourceLink;
@@ -142,8 +124,6 @@ namespace BookClub.Controllers
 
         public ActionResult GetGenres()
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
             List<Genre> genreList = new List<Genre>();
             genreList = service.GetGenres();
             return View("Genres",genreList);
@@ -151,20 +131,21 @@ namespace BookClub.Controllers
 
         public ActionResult GetBookClubs()
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
             List<BookClub.Core.BookClub> listBookClubs = new List<BookClub.Core.BookClub>();
             listBookClubs = service.GetBookClubs();
             return View("BookClubs", listBookClubs);
         }
         public ActionResult AddBookClub(string newBookClubName)
         {
-            string connString = WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
-            BookClubSL service = new BookClubSL(connString);
-
             service.AddBookClub(newBookClubName);
             return RedirectToAction("GetBookClubs", "Home");
 
+        }
+        public ActionResult DeleteBookSource(int bookSourceId)
+        {
+            service.DeleteBookSource(bookSourceId);
+
+            return RedirectToAction("GetBookSources", "Home");
         }
     }
 }

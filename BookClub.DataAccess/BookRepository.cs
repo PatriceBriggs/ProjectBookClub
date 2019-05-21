@@ -78,7 +78,7 @@ namespace BookClub.Core
             SqlParameter prmNotes = new SqlParameter("notes", newBook.Notes == null ? (object)DBNull.Value : newBook.Notes);
             SqlParameter prmBookClubId = new SqlParameter("bookClubId", newBook.BookClubId == 0 ? (object)DBNull.Value : newBook.BookClubId);
             SqlParameter prmGoodReadLink = new SqlParameter("goodReadLink", newBook.GoodReadLink == null ? (object)DBNull.Value : newBook.GoodReadLink);
-            SqlParameter prmStars = new SqlParameter("stars", newBook.Stars == 0 ? (object)DBNull.Value : newBook.Stars);
+            SqlParameter prmStars = new SqlParameter("stars", newBook.Stars);
 
             var result =  _context.Database
                 .SqlQuery<object>("_sp_AddBook @genreId, @title, @author, @dateRead, @mainCharacters, @notes, @bookClubId, @goodReadLink, @stars",

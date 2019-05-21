@@ -70,19 +70,18 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BookSourceName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BookSourceLink)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.BookSourceId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.BookSourceId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.BookSourceId })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookSourceName)
+            </td>
+            <td>
+                <a href="@item.BookSourceLink" target="_blank" >@Html.DisplayFor(modelItem => item.BookSourceLink)</a>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookSourceId }) |
+                @Html.ActionLink("Delete", "DeleteBookSource", new { bookSourceId = item.BookSourceId })
+            </td>
+        </tr>
         }
 
     </table>

@@ -19,7 +19,7 @@ namespace BookClub.Core
         {
             return _context.Database
                    .SqlQuery<BookSource>("_sp_GetBookSources")
-                 .ToList();
+                   .ToList();
         }
 
         public BookSource GetOneBookSource(int bookSourceId)
@@ -52,7 +52,7 @@ namespace BookClub.Core
         public void DeleteBookSource(int bookSourceId)
         {
             SqlParameter prmBookId = new SqlParameter("bookSourceId", bookSourceId);
-            _context.Database.ExecuteSqlCommand("Delete From BooksSources Where BookSourceId = " + bookSourceId);
+            _context.Database.ExecuteSqlCommand("Delete From BookSources Where BookSourceId = " + bookSourceId);
 
             return;
         }

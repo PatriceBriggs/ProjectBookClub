@@ -14,7 +14,6 @@ namespace BookClub
         private GenreRepository _genreRepository;
         private BookClubRepository _bookClubRepository;
 
-
         public BookClubSL(string connString)
         {
             BookClubDbContext context = new BookClubDbContext(connString);
@@ -128,6 +127,12 @@ namespace BookClub
         internal void AddBookSource(BookSource newBookSource)
         {
             _bookSourceRepository.AddBookSource(newBookSource);
+            return;
+        }
+
+        internal void DeleteBookSource(int bookSourceId)
+        {
+            _bookSourceRepository.DeleteBookSource(bookSourceId);
             return;
         }
     }
