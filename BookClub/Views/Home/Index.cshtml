@@ -22,11 +22,14 @@
         <inline class="btn btn-success btnTextColor">
             @Html.ActionLink("Book Sources", "GetBookSources")
         </inline>
-
         <inline class="btn btn-success btnTextColor">
             @Html.ActionLink("Book Clubs", "GetBookClubs")
         </inline>
-
+        <inline>
+            <a href="@Url.Action("ExportAllBooks", "ExcelExport")" title="Export to Excel">
+                <img alt="Export to Excel" style="width:30px;" src="@Url.Content("~/Images/xlicons257.ico")">
+            </a>
+        </inline>
     </p>
     <div class="text-center">
         <h2>Book Club Reads</h2>

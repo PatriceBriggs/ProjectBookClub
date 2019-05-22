@@ -1,4 +1,5 @@
-﻿using BookClub.Core;
+﻿using Aspose.Cells;
+using BookClub.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,11 +15,6 @@ namespace BookClub.Core
         public BookRepository(BookClubDbContext context)
         {
             _context = context;
-        }
-
-        public List<Book> GetBooks()
-        {
-            return _context.Books.ToList();
         }
 
         public EditBook GetOneBook(int bookId)
@@ -58,14 +54,91 @@ namespace BookClub.Core
             SqlParameter prmGoodReadLink = new SqlParameter("goodReadLink", editBook.GoodReadLink == null ? (object)DBNull.Value : editBook.GoodReadLink);
             SqlParameter prmStars = new SqlParameter("stars", editBook.Stars  == 0 ? (object)DBNull.Value : editBook.Stars);
 
-
-
             var result =  _context.Database
                 .SqlQuery<object>("_sp_EditBook @bookId, @genreId, @title, @author, @DateRead, @mainCharacters, @notes, @bookClubId, @goodReadLink, @stars", 
                                               prmBookId, prmGenreId, prmTitle, prmAuthor, prmDateRead, prmMainCharacters, prmNotes, prmBookClubId, prmGoodReadLink, prmStars)
                 .ToList();
             return;
    
+        }
+
+        public Workbook GetAllBooksExcel()
+        {
+            //Instantiate License class and call its SetLicense method to use the license
+            string licPath = @"C:\ProjectBookClub\Aspose.Total.lic";
+            Aspose.Cells.License lic = new Aspose.Cells.License();
+            lic.SetLicense(licPath);
+
+            DataSet dataset = new DataSet();
+
+            string bkConn = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["BookClubConnString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(bkConn))
+            {
+                SqlCommand cmd = new SqlCommand("_sp_GetAllBooksExcel", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                //DataSet ds = new DataSet();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dataset);
+            }
+
+            DataTable books = dataset.Tables[0];
+            Workbook workBook = new Workbook();
+            workBook.Worksheets.Clear();
+
+            // Format the header row
+            Worksheet workSheet = workBook.Worksheets.Add("Books");
+            workSheet.Cells.ImportDataTable(books, true, "A1");
+
+            Aspose.Cells.Range range = workSheet.Cells.CreateRange("A1","I1");
+            Aspose.Cells.Style headerStyle = workBook.CreateStyle();
+            headerStyle.Font.Name = "Calibri";
+            headerStyle.Font.IsBold = true;
+            headerStyle.Font.Size = 13;
+
+            StyleFlag flg = new StyleFlag();
+            flg.Font = true;
+
+            range.ApplyStyle(headerStyle, flg);
+
+            //Format font for the rest of the sheet
+
+            Aspose.Cells.Range range1 = workSheet.Cells.CreateRange("A2", "I100");
+            Aspose.Cells.Style style1 = workBook.CreateStyle();
+            style1.Font.Name = "Calibri";
+            style1.Font.Size = 12;
+
+            StyleFlag flg1 = new StyleFlag();
+            flg1.Font = true;
+
+            range1.ApplyStyle(style1, flg);
+            // Title
+            workSheet.Cells.SetColumnWidth(0, 40);
+            // Author
+            workSheet.Cells.SetColumnWidth(1, 25);
+            // Date Read - set date format for this column         
+            Aspose.Cells.Style style = workBook.CreateStyle();
+            style.Number = 14;
+            StyleFlag flag = new StyleFlag();
+            flag.NumberFormat = true;
+            //workSheet.Cells.SetColumnWidth(7, 16);
+            //workSheet.Cells.Columns[7].ApplyStyle(style, flag);
+            workSheet.Cells.SetColumnWidth(2, 12);
+            workSheet.Cells.Columns[2].ApplyStyle(style, flag);
+            // Main Characters
+            workSheet.Cells.SetColumnWidth(3, 40);
+            // Notes
+            workSheet.Cells.SetColumnWidth(4, 40);
+            // Book Club
+            workSheet.Cells.SetColumnWidth(5, 20);
+            // Book Information
+            workSheet.Cells.SetColumnWidth(6, 40);
+            // Stars
+            workSheet.Cells.SetColumnWidth(7, 15);
+            // Genre
+            workSheet.Cells.SetColumnWidth(8, 15);
+
+            return workBook;
         }
 
         public void AddBook(AddBook newBook)

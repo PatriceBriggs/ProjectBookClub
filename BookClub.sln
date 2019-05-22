@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookClub.DataAccess", "Book
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookClub.Core", "BookClub.Core\BookClub.Core.csproj", "{C9C4E096-CCFE-4BA2-87F6-223FBEA2724C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E68ED936-ACA6-4DC4-8991-B8BA36F4337C}"
+	ProjectSection(SolutionItems) = preProject
+		Aspose.Total.lic = Aspose.Total.lic
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

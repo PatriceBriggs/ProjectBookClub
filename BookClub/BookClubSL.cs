@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using Aspose.Cells;
 using BookClub.Core;
 using BookClub.Core.StoredProcReturnTypes;
 
@@ -17,6 +19,7 @@ namespace BookClub
         public BookClubSL(string connString)
         {
             BookClubDbContext context = new BookClubDbContext(connString);
+
             _bookRepository = new BookRepository(context);
             _bookSourceRepository = new BookSourceRepository(context);
             _genreRepository = new GenreRepository(context);
@@ -38,6 +41,10 @@ namespace BookClub
 
             return editBook;
         }
+        internal void EditBook(EditBook editBook)
+        {
+            _bookRepository.EditBook(editBook);
+        }
 
         public void DeleteBook(int bookId)
         {
@@ -45,21 +52,22 @@ namespace BookClub
             return;
         }
 
-        internal void EditBook(EditBook editBook)
-        {
-            _bookRepository.EditBook(editBook);
-        }
-
         internal void AddBook(AddBook newBook)
         {
-
              _bookRepository.AddBook(newBook);
              return;
         }
 
-        internal AddBook GetBookClubs(AddBook addBook)
+        internal Workbook GetAllBooksExcel()
         {
-            
+            Workbook workBook = new Workbook();
+
+            workBook = _bookRepository.GetAllBooksExcel();
+            return workBook;
+        }
+
+        internal AddBook GetBookClubs(AddBook addBook)
+        {           
             List<BookClub.Core.BookClub> bookClubList = new List<BookClub.Core.BookClub>();
             bookClubList = _bookClubRepository.GetBookClubs();
 
@@ -76,7 +84,6 @@ namespace BookClub
 
         internal EditBook GetBookClubs(EditBook editBook)
         {
-
             List<BookClub.Core.BookClub> bookClubList = new List<BookClub.Core.BookClub>();
             bookClubList = _bookClubRepository.GetBookClubs();
 
@@ -118,12 +125,6 @@ namespace BookClub
             return _bookSourceRepository.GetBookSources();
         }
 
-        internal void AddBookClub(string newBookClubName)
-        {
-            _bookClubRepository.AddBookClub(newBookClubName);
-            return;
-        }
-
         internal void AddBookSource(BookSource newBookSource)
         {
             _bookSourceRepository.AddBookSource(newBookSource);
@@ -133,6 +134,12 @@ namespace BookClub
         internal void DeleteBookSource(int bookSourceId)
         {
             _bookSourceRepository.DeleteBookSource(bookSourceId);
+            return;
+        }
+
+        internal void AddBookClub(string newBookClubName)
+        {
+            _bookClubRepository.AddBookClub(newBookClubName);
             return;
         }
     }
