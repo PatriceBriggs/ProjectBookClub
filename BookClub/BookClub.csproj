@@ -156,6 +156,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\ExcelOnline.png" />
+    <Content Include="Images\ExcelOnlinesmall.png" />
+    <Content Include="Images\Library-Books.png" />
+    <Content Include="Images\Library-BooksSmall.png" />
     <Content Include="Images\white-linen.png" />
     <Content Include="Images\xlicons257.ico" />
     <Content Include="Scripts\bootstrap.bundle.js" />

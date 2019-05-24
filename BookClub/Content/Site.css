@@ -31,6 +31,7 @@ textarea {
 .btnTextColor {
     text-transform: uppercase;
 }
+
 .modalDialog {
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;

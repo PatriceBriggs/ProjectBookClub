@@ -16,9 +16,12 @@
 </head>
 <body>
     <p>
-        <div class="btn btn-success btnTextColor">
+        <a href="@Url.Action("Index", "Home")" title="Book Club Home">
+           <img src="~/Images/Library-Books.png" width="40" alt="Book Club Home" title="Book Club Home" />
+         </a>
+        <inline class="btn btn-success btnTextColor">
             @Html.ActionLink("Add a Book", "AddBook")
-        </div>
+        </inline>
         <inline class="btn btn-success btnTextColor">
             @Html.ActionLink("Book Sources", "GetBookSources")
         </inline>
@@ -27,10 +30,10 @@
         </inline>
         <inline>
             <a href="@Url.Action("ExportAllBooks", "ExcelExport")" title="Export to Excel">
-                <img alt="Export to Excel" style="width:30px;" src="@Url.Content("~/Images/xlicons257.ico")">
+                <img alt="Export to Excel" style="width:40px;" src="@Url.Content("~/Images/ExcelOnline.png")">
             </a>
         </inline>
-    </p>
+</p>
     <div class="text-center">
         <h2>Book Club Reads</h2>
     </div>

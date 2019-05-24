@@ -17,7 +17,20 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <a href="#editBookSourceModal" class="btn btn-success btnTextColor" data-toggle="modal" data-target="#bookSourceModal">ADD Book Source</a>
+
+    <table>
+        <tr>
+            <td>
+                <a href="@Url.Action("Index", "Home")" title="Book Club Home">
+                    <img src="~/Images/Library-Books.png" width="40" alt="Book Club Home" title="Book Club Home" />
+                </a>
+            </td>
+            <td style="padding-left:10px;">
+                <a href="#editBookSourceModal" class="btn btn-success btnTextColor" data-toggle="modal" data-target="#bookSourceModal" >ADD Book Source</a>
+            </td>
+        </tr>
+    </table>
+    <hr />  
 
     <div id="editBookSourceModal" class="modal fade">
 
@@ -49,7 +62,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-default" onclick="location.href='@Url.Action("GetBookSources")'" data-dismiss="modal" >CANCEL</a>                   
+                    <a href="#" class="btn btn-default" onclick="location.href='@Url.Action("GetBookSources")'" data-dismiss="modal">CANCEL</a>
                     <a href="#" class="btn btn-success btnTextColor" onclick="saveBookSource()">SAVE</a>
                 </div>
             </div>
@@ -75,12 +88,12 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "EditbookSource") |
-                    @Html.ActionLink("Delete","DeleteBookSource")
+                    @Html.ActionLink("Delete", "DeleteBookSource")
 
                 </td>
 
             </tr>
-            
+
         </table>
     </div>
     @Html.HiddenFor(model => model.BookSourceId)
