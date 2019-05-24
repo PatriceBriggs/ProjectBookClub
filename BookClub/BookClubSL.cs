@@ -153,5 +153,15 @@ namespace BookClub
         {
             _bookSourceRepository.EditBookSource(bookSourceId, editBookSourceName, editBookSourceLink);
         }
+
+        internal void EditBookClub(int bookClubId, string editBookClubName)
+        {
+            _bookClubRepository.EditBookClub(bookClubId, editBookClubName);
+        }
+
+        internal BookClub.Core.BookClub GetOneBookClub(int bookClubId)
+        {
+            return _bookClubRepository.GetOneBookClub(bookClubId);
+        }
     }
 }

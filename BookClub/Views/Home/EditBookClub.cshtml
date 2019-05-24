@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookClub.Core.BookClub>
+﻿@model BookClub.Core.BookClub
 
 @{
     Layout = null;
@@ -9,7 +9,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Book Clubs</title>
+    <title>Edit Book Club</title>
+
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
@@ -22,14 +23,15 @@
             <img src="~/Images/Library-Books.png" width="40" alt="Book Club Home" title="Book Club Home" />
         </a>
         <inline>
-            <a href="#bookClubModal" class="btn btn-success btnTextColor" data-toggle="modal" data-target="#bookClubModal">ADD Book Club</a>
+            <a href="#editBookClubModal" class="btn btn-success btnTextColor" data-toggle="modal" data-target="#editBookClubModal">ADD Book Club</a>
         </inline>
     </p>
-    <div id="bookClubModal" class="modal fade">
+
+    <div id="editBookClubModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <a href="#" class="close" data-dismiss="modal">&times</a>
+                    <a href="#" class="close" onclick="location.href='@Url.Action("GetBookClubs")'" data-dismiss="modal">&times</a>
                     <br />
                 </div>
                 <div class="modal-body">
@@ -38,15 +40,15 @@
                             <td>
                                 <div class="form-group formWider">
                                     @Html.DisplayNameFor(model => model.BookClubName)
-                                    @Html.Editor("NewBookClubName", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(Model => Model.BookClubName, new { htmlAttributes = new { @class = "form-control" } })             
                                 </div>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-default" data-dismiss="modal">CANCEL</a>
-                    <a href="#" class="btn btn-success btnTextColor" onclick="saveNewBookClub()">SAVE</a>
+                    <a href="#" class="btn btn-default" onclick="location.href='@Url.Action("GetBookClubs")'" data-dismiss="modal">CANCEL</a>
+                    <a href="#" class="btn btn-success btnTextColor" onclick="saveBookClub()">SAVE</a>
                 </div>
             </div>
         </div>
@@ -59,38 +61,37 @@
             </th>
             <th></th>
         </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BookClubName)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "EditBookClub", new { bookClubId = item.BookClubId })
-                </td>
-            </tr>
-        }
+        <tr>
+            <td>
+                @Html.DisplayFor(model => Model.BookClubName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.BookClubId })
+            </td>
+        </tr>
 
     </table>
+    @Html.HiddenFor(model => model.BookClubId)
 </body>
 </html>
 <script>
     $(document).ready(function () {
+        $("#editBookClubModal").modal("show");
     });
-    function saveNewBookClub() {
-        var newBookClubName = $("#NewBookClubName").val();
+    function saveBookClub() {
+        var editBookClubName = $("#BookClubName").val();
+        var bookClubId = @Model.BookClubId;
         $.ajax({
-            url: '/Home/AddBookClub/',
+            url: '/Home/EditBookClub/',
             data: {
-                newBookClubName: newBookClubName,
+                bookClubId: bookClubId,
+                editBookClubName: editBookClubName,
             },
             type: "POST",
             success: function () {
-                window.location.reload()
+                window.location.href = 'GetBookClubs/';
             },
         });
     }
- 
-</script>
 
+</script>

@@ -126,8 +126,7 @@ namespace BookClub.Controllers
         {
             BookSource editBookSource = new BookSource();
             editBookSource = service.GetOneBookSource(bookSourceId);
-            //List<BookSource> editOneBookSource = new List<BookSource>();
-            //editOneBookSource.Add(editBookSource);
+
             return View("EditBookSource", editBookSource);
         }
         [HttpPost]
@@ -165,7 +164,16 @@ namespace BookClub.Controllers
         }
         public ActionResult EditBookClub(int bookClubId)
         {
-            return View();
+            BookClub.Core.BookClub editBookClub = new BookClub.Core.BookClub();
+            editBookClub = service.GetOneBookClub(bookClubId);
+
+            return View("EditBookClub", editBookClub);
+        }
+        [HttpPost]
+        public ActionResult EditBookClub(int bookClubId, string editBookClubName)
+        {
+            service.EditBookClub(bookClubId, editBookClubName);
+            return RedirectToAction("GetBookClubs", "Home");
         }
     }
 }
