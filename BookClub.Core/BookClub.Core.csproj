@@ -51,6 +51,7 @@
     <Compile Include="Models\AddBook.cs" />
     <Compile Include="Models\BookClub.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\BookClubMember.cs" />
     <Compile Include="Models\BookSources.cs" />
     <Compile Include="Models\EditBook.cs" />
     <Compile Include="Models\Genre.cs" />

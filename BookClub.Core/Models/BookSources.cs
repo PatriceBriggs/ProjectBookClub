@@ -10,10 +10,14 @@ namespace BookClub.Core
     public class BookSource
     {
         public int BookSourceId { get; set; }
-        [Display(Name = "Book Source Name")]
+
+        [Required(ErrorMessage = "Please enter a source")]
+        [Display(Name = "Book Source Name:")]
         public string BookSourceName { get; set; }
 
-        [Display(Name = "Book Source Link")]
+        [Display(Name = "Book Source Link:")]
         public string BookSourceLink { get; set; }
+
+
     }
 }

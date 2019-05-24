@@ -52,7 +52,8 @@ namespace BookClub.Core
             SqlParameter prmNotes = new SqlParameter("notes", editBook.Notes == null ? (object)DBNull.Value : editBook.Notes);
             SqlParameter prmBookClubId = new SqlParameter("bookClubId", editBook.BookClubId == 0 ? (object)DBNull.Value : editBook.BookClubId);
             SqlParameter prmGoodReadLink = new SqlParameter("goodReadLink", editBook.GoodReadLink == null ? (object)DBNull.Value : editBook.GoodReadLink);
-            SqlParameter prmStars = new SqlParameter("stars", editBook.Stars  == 0 ? (object)DBNull.Value : editBook.Stars);
+            //SqlParameter prmStars = new SqlParameter("stars", editBook.Stars  == 0 ? (object)DBNull.Value : editBook.Stars);
+            SqlParameter prmStars = new SqlParameter("stars", editBook.Stars);
 
             var result =  _context.Database
                 .SqlQuery<object>("_sp_EditBook @bookId, @genreId, @title, @author, @DateRead, @mainCharacters, @notes, @bookClubId, @goodReadLink, @stars", 
@@ -102,9 +103,8 @@ namespace BookClub.Core
             range.ApplyStyle(headerStyle, flg);
 
             //Format font for the rest of the sheet
-
-            Aspose.Cells.Range range1 = workSheet.Cells.CreateRange("A2", "I100");
-            Aspose.Cells.Style style1 = workBook.CreateStyle();
+            Range range1 = workSheet.Cells.CreateRange("A2", "I100");
+            Style style1 = workBook.CreateStyle();
             style1.Font.Name = "Calibri";
             style1.Font.Size = 12;
 

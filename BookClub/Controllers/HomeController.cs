@@ -122,6 +122,22 @@ namespace BookClub.Controllers
 
         }
 
+        public ActionResult EditBookSource(int bookSourceId)
+        {
+            BookSource editBookSource = new BookSource();
+            editBookSource = service.GetOneBookSource(bookSourceId);
+            //List<BookSource> editOneBookSource = new List<BookSource>();
+            //editOneBookSource.Add(editBookSource);
+            return View("EditBookSource", editBookSource);
+        }
+        [HttpPost]
+        public ActionResult EditBookSource(int bookSourceId, string editBookSourceName, string editBookSourceLink)
+        {
+            service.EditBookSource(bookSourceId, editBookSourceName, editBookSourceLink);
+
+            return RedirectToAction("GetBookSources", "Home");
+        }
+
         public ActionResult GetGenres()
         {
             List<Genre> genreList = new List<Genre>();
@@ -146,6 +162,10 @@ namespace BookClub.Controllers
             service.DeleteBookSource(bookSourceId);
 
             return RedirectToAction("GetBookSources", "Home");
+        }
+        public ActionResult EditBookClub(int bookClubId)
+        {
+            return View();
         }
     }
 }

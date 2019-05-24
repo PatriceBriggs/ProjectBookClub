@@ -137,10 +137,21 @@ namespace BookClub
             return;
         }
 
+        internal BookSource GetOneBookSource(int bookSourceId)
+        {
+            BookSource editBookSource = new BookSource();
+            return _bookSourceRepository.GetOneBookSource(bookSourceId);
+        }
+
         internal void AddBookClub(string newBookClubName)
         {
             _bookClubRepository.AddBookClub(newBookClubName);
             return;
+        }
+
+        internal void EditBookSource(int bookSourceId, string editBookSourceName, string editBookSourceLink)
+        {
+            _bookSourceRepository.EditBookSource(bookSourceId, editBookSourceName, editBookSourceLink);
         }
     }
 }

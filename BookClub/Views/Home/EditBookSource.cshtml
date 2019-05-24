@@ -1,0 +1,114 @@
+﻿@model BookClub.Core.BookSource
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Book Source</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <a href="#editBookSourceModal" class="btn btn-success btnTextColor" data-toggle="modal" data-target="#bookSourceModal">ADD Book Source</a>
+
+    <div id="editBookSourceModal" class="modal fade">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" onclick="location.href='@Url.Action("GetBookSources")'" data-dismiss="modal">&times</a>
+                    <br />
+                </div>
+                <div class="modal-body">
+                    <table class="center">
+                        <tr>
+                            <td>
+                                <div class="form-group formWider">
+                                    @Html.DisplayNameFor(model => model.BookSourceName)
+                                    @Html.EditorFor(Model => Model.BookSourceName, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group formWider">
+                                    @Html.DisplayNameFor(model => model.BookSourceLink)
+                                    @Html.EditorFor(Model => Model.BookSourceLink, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" onclick="location.href='@Url.Action("GetBookSources")'" data-dismiss="modal" >CANCEL</a>                   
+                    <a href="#" class="btn btn-success btnTextColor" onclick="saveBookSource()">SAVE</a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End of editBookSourceModal-->
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookSourceName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookSourceLink)
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.BookSourceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.BookSourceLink)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditbookSource") |
+                    @Html.ActionLink("Delete","DeleteBookSource")
+
+                </td>
+
+            </tr>
+            
+        </table>
+    </div>
+    @Html.HiddenFor(model => model.BookSourceId)
+</body>
+</html>
+<script>
+   $(document).ready(function () {
+
+       $("#editBookSourceModal").modal("show");
+             
+   });
+
+    function saveBookSource() {
+        var editBookSourceName = $("#BookSourceName").val();
+        var editBookSourceLink = $("#BookSourceLink").val();
+        var bookSourceId = @Model.BookSourceId;
+
+        $.ajax({
+            url: '/Home/EditBookSource/',
+            data: {
+                bookSourceId: bookSourceId,
+                editBookSourceName: editBookSourceName,
+                editBookSourceLink: editBookSourceLink
+            },
+            type: "POST",
+            success: function () {
+                window.location.href = 'GetBookSources/';
+            },
+        });
+    }
+</script>

@@ -37,6 +37,7 @@ namespace BookClub.Core
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
 
+        [Display(Name="Genre")]
         public string GenreDesc { get; set; }
 
         public int Stars { get; set; }

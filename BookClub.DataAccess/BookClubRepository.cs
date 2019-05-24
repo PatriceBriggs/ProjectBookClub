@@ -32,5 +32,10 @@ namespace BookClub.Core
             _context.Database.ExecuteSqlCommand("Insert Into BookClubs(BookClubName) Values ('" + newBookClubName + "')");
             return;
         }  
+        public void EditBookClubMember(BookClubMember member)
+        {
+
+            return;
+        }
     }
 }

@@ -74,5 +74,6 @@
     <Build Include="dbo\Stored Procedures\_sp_AddBook.sql" />
     <Build Include="dbo\Stored Procedures\_sp_GetGenres.sql" />
     <Build Include="dbo\Tables\Members.sql" />
+    <Build Include="dbo\Stored Procedures\_sp_GetAllBooksExcel.sql" />
   </ItemGroup>
 </Project>
