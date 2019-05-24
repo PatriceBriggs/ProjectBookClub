@@ -16,6 +16,9 @@ namespace BookClub.Core
         public string Title { get; set; }
         [Required()]
         public string Author { get; set; }
+
+        [Display(Name = "Date Read")]
+        [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
         public DateTime? DateRead { get; set; }
         public string MainCharacters { get; set; }
         public string Notes { get; set; }
